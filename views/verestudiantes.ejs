@@ -1,0 +1,25 @@
+<%- include("templates/header.template.ejs", {titulo: "Titulo MAMALON" }) %>
+    <%- include("templates/nav.template.ejs") %>
+
+        <table class="custom-table">
+            <thead>
+                <tr>
+                    <th>Número de Cuenta</th>
+                    <th>Nombre</th>
+                    <th>Huella</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% estudiantes.forEach((estudiante) => { %>
+                    <tr>
+                        <td><%= estudiante.numeroCuenta %></td>
+                        <td><%= estudiante.nombre %></td>
+                        <td><%= estudiante.huella %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+          
+
+
+        <%- include("templates/footer.template.ejs") %>
