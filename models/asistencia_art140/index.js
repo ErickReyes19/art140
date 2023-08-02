@@ -1,17 +1,30 @@
-const estudiante = require('../estudiante.model');
-const user = require('../user.model');
+const estudiante = require('../usuario.model');
+const sala = require('../sala.model');
+const usuarioSala = require('../usuariosala.model');
 
 
-estudiante.belongsTo(user, {
-  foreignKey: 'idUsuario'
+sala.belongsToMany(estudiante, {
+  through: {
+    model: usuarioSala,
+    unique: false
+  },
+  foreignKey: 'idSala',
+  otherKey: 'idEstudiante'
 });
 
-
-
+estudiante.belongsToMany(sala, {
+  through: {
+    model: usuarioSala,
+    unique: false
+  },
+  foreignKey: 'idEstudiante',
+  otherKey: 'idSala'
+});
 
 const db = {
   estudiante,
-  user
+  sala,
+  usuarioSala
 };
 
 module.exports = db;

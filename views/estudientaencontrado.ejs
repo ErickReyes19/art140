@@ -1,0 +1,49 @@
+<%- include("templates/header.template.ejs", {titulo: "Acceso Autorizado" }) %>
+  <%- include("templates/nav.template.ejs") %>
+
+    <body>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-md-6">
+            <h3>Datos del Estudiante</h3>
+            <div class="form-group">
+              <label for="numeroCuenta">Número de Cuenta:</label>
+              <span id="numeroCuenta">
+                <%= estudiante.numeroCuenta %>
+              </span>
+            </div>
+            <div class="form-group">
+              <label for="nombre">Nombre:</label>
+              <span id="nombre">
+                <%= estudiante.nombre %>
+              </span>
+            </div>
+            <div class="form-group">
+              <label for="huella">Huella:</label>
+              <span id="huella">
+                <%= estudiante.huella %>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="alert alert-success" role="alert">
+              <h4 class="alert-heading">Acceso Autorizado</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form id="redireccionForm" action="/sala" method="POST">
+        <input type="hidden" name="idEstudiante" value="<%= estudiante.idEstudiante %>">
+      </form>
+
+
+      <!-- Agrega el siguiente código JavaScript al final de la plantilla -->
+      <script>
+        // Función para enviar el formulario después de 3 segundos
+        setTimeout(() => {
+          document.getElementById('redireccionForm').submit();
+        }, 3000);
+      </script>
+
+      <%- include("templates/footer.template.ejs") %>
