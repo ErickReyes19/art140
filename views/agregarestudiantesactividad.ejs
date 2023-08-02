@@ -1,6 +1,15 @@
-<%- include("templates/header.template.ejs", {titulo: "Titulo MAMALON" }) %>
+<%- include("templates/header.template.ejs", {titulo: "Buscar Estudiante" }) %>
     <%- include("templates/nav.template.ejs") %>
-
-
-        <h2>agregar estudiantes actividad</h2>
-        <%- include("templates/footer.template.ejs") %>
+        <body>
+            <div class="container mt-5">
+                <h1>Buscar</h1>
+                <form action="/estudiante/buscar" method="GET">
+                    <div class="form-group">
+                        <label for="numeroCuenta">Número de Cuenta:</label>
+                        <input type="text" class="form-control" id="huella" name="huella" required
+                            placeholder="Huella dactilar">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </form>
+            </div>
+            <%- include("templates/footer.template.ejs") %>

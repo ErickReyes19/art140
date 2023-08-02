@@ -13,6 +13,7 @@ class Server {
         this.port = process.env.PORT || 3000;
         this.rutaAuth = '/auth';
         this.rutaEstudiante = '/estudiante';
+        this.rutaSala = '/sala';
         this.middlewares();
         this.routes();
     }
@@ -68,6 +69,7 @@ class Server {
     routes() {
         // Ruta de usuarios api
         this.app.use(this.rutaEstudiante, require('./routes/estudiantes.routes'));
+        this.app.use(this.rutaSala, require('./routes/sala.routes'));
         this.app.use(this.rutaAuth, require('./routes/auth.routes'));
     }
     listen() {

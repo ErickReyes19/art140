@@ -15,6 +15,29 @@ const getEstudiantes = async (req = request, res = response) => {
         });
     }
 };
+const getEstudiante = async (req = request, res = response) => {
+    const { huella } = req.query;
+    console.log(huella);
+    try {
+        const estudiante = await Estudiantes.findOne({
+            where: {
+                huella: huella
+            }
+        });
+        if (estudiante) {
+            res.render('estudientaencontrado', { estudiante });
+          } else {
+            res.render('estudiantenoencontrado');
+          }
+          
+          
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            msg: "Ocurrió un error interno en el servidor"
+        });
+    }
+};
 
 const crearEstudiante = async (req, res) => {
     try {
@@ -37,5 +60,6 @@ const crearEstudiante = async (req, res) => {
 
 module.exports = {
     getEstudiantes,
-    crearEstudiante
+    crearEstudiante,
+    getEstudiante
 }
