@@ -1,15 +1,35 @@
 <%- include("templates/header.template.ejs", {titulo: "Buscar Estudiante" }) %>
     <%- include("templates/nav.template.ejs") %>
         <body>
-            <div class="container mt-5">
-                <h1>Buscar</h1>
+            <br>
+            <br>
+            <div class="container bg-light mt-10 mb-10" 
+            style=" width: 95%;
+            display: flex;
+            justify-content: center;
+            height: 400px;
+            min-height: 400px;
+            border-radius: 5px;
+            margin-top: 0;">
+            <div class="container mt-10">
+                
+                <div class="mb-3">
+                    <h1 style="text-align: center; font-family: 'Poppins', sans-serif;">Buscar Usuario</h1>
+                </div>
                 <form action="/estudiante/buscar" method="GET">
                     <div class="form-group">
+                        <div class="mb-3">
                         <label for="numeroCuenta">Número de Cuenta:</label>
+                    </div>
+                    <div class="mb-3">
                         <input type="text" class="form-control" id="huella" name="huella" required
                             placeholder="Huella dactilar">
                     </div>
-                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary" style="float: right;">Buscar</button>
+                </div>
                 </form>
             </div>
+        </div>
             <%- include("templates/footer.template.ejs") %>

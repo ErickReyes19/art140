@@ -1,25 +1,43 @@
 <%- include("templates/header.template.ejs", {titulo: "Titulo MAMALON" }) %>
     <%- include("templates/nav.template.ejs") %>
-
-        <table class="custom-table">
-            <thead>
-                <tr>
-                    <th>Número de Cuenta</th>
-                    <th>Nombre</th>
-                    <th>Huella</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% estudiantes.forEach((estudiante) => { %>
-                    <tr>
-                        <td><%= estudiante.numeroCuenta %></td>
-                        <td><%= estudiante.nombre %></td>
-                        <td><%= estudiante.huella %></td>
-                    </tr>
-                <% }); %>
-            </tbody>
-        </table>
-          
-
+        <br>
+        <br>
+        <div class="container bg-light mt-10 mb-10" style=" width: 95%;
+                                                            display: flex;
+                                                            justify-content: center;
+                                                            height: 400px;
+                                                            min-height: 400px;
+                                                            border-radius: 5px;
+                                                            margin-top: 0;">
+            <div class="container mt-10" style="position: relative; ">
+                <div class="mb-3">
+                    <h1 style="text-align: center; font-family: 'Poppins', sans-serif;">Usuarios Registrados</h1>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Número de Cuenta</th>
+                            <th>Nombre</th>
+                            <th>Huella</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% estudiantes.forEach((estudiante)=> { %>
+                            <tr>
+                                <td>
+                                    <%= estudiante.numeroCuenta %>
+                                </td>
+                                <td>
+                                    <%= estudiante.nombre %>
+                                </td>
+                                <td>
+                                    <%= estudiante.huella %>
+                                </td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
         <%- include("templates/footer.template.ejs") %>
