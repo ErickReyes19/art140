@@ -1,13 +1,69 @@
 <%- include("templates/header.template.ejs", {titulo: "Titulo MAMALON" }) %>
     <%- include("templates/nav.template.ejs") %>
 
-    <div class="container mt-5">
-        <div class="jumbotron">
-          <h1 class="display-4">Bienvenido/a</h1>
-          <p class="lead">¡Esta es una pantalla estática y bonita en HTML usando Bootstrap!</p>
-          <hr class="my-4">
-          <p>Puedes agregar más contenido aquí...</p>
-          <a class="btn btn-primary btn-lg" href="#" role="button">Click Aquí</a>
-        </div>
+    <body>
+          
+  <div class="container login_container bg-light mt-5" style="height: 400px;
+                                                              min-height: 400px;">
+     
+     
+      <div class="row row_principal border border-2 mt-5" style="height: 400px;
+      min-height: 400px;">
+      <div class="mb-3">
+        <h1 style="text-align: center; font-family: 'Poppins', sans-serif;">Control de actividades</h1>
+    </div>
+      <!-- Información actividad -->
+      <div class="col text-center margin-top" style="  position: relative;
+      top: -20px;
+      right: -20px;
+    ">
+  
+          <div class="login-wrap">
+              
+              <div class="row titulo">
+                  <select class="form-select" aria-label="Default select example">
+                      <option selected>Seleccione Actividad</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                    <h3 style="font-family: 'Poppins', sans-serif;">Infomación Sobre Actividad</h3>
+  
+                    <ul class="list-group list-group">
+                      <li class="list-group-item">Nombre: Torneo Futbol</li>
+                      <li class="list-group-item">Lugar: Cancha Polideportiva</li>
+                      <li class="list-group-item">Dimensión: Deporte</li>
+                      <li class="list-group-item">Horas: 5</li>
+                      <li class="list-group-item">Estado: Activa</li>
+                    </ul>
+              </div>
+          </div>
+      </div>
+      <!-- espacio para una imagen informativa, puede ser logotipo con fondo -->
+  
+      <div class="col text-center">
+  
+          <div class="login-wrap" >
+              <br>
+              <br>
+              <div class="mt-5 mt-10">
+                <a class="btn btn-success" href="/postEstudiantesActividad" role="button">Registrar Asistencia</a>
+              </div>
+              <br>
+              <div class="mb-5 mt-10">
+                <a class="btn btn-warning" href="/sala" role="button">Listado de participantes</a>
+
+              </div>
+
+      </div>
+      </div>
+  
+  
+  
+      </div>
+      </div>
+  
+  </div>
+  </body>
       </div>
         <%- include("templates/footer.template.ejs") %>
