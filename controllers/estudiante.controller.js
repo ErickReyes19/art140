@@ -58,7 +58,7 @@ const getEstudiante = async (req = request, res = response) => {
 };
 
 const crearEstudiante = async (req, res) => {
-    console.log("Entro al crear estudiante")
+    console.log("Entro al crear estudiante");
     try {
         const { numeroCuenta, nombre } = req.body;
 
@@ -66,22 +66,28 @@ const crearEstudiante = async (req, res) => {
             numeroCuenta: numeroCuenta,
             nombre: nombre,
         });
-        console.log("idEstudiante creado")
-        console.log(nuevoEstudiante.idEstudiante)
+        console.log("idEstudiante creado");
+        console.log(nuevoEstudiante.idEstudiante);
 
-        const huella = await postHuella(req, res, nuevoEstudiante.idEstudiante);
-        console.log("huella creada")
-        console.log(huella)
+        setTimeout(async () => {
+            try {
+                const huella = await postHuella(req, res, nuevoEstudiante.idEstudiante);
+                console.log("huella creada");
+                console.log(huella);
 
-        return res.redirect('/estudiante');
-
-
+                return res.redirect('/estudiante');
+            } catch (error) {
+                console.log(error);
+                return res.status(500).json({ message: 'Ocurrió un error al crear la huella' });
+            }
+        }, 5000); 
 
     } catch (error) {
         console.log(error);
         return res.status(500).json({ message: 'Ocurrió un error al crear el estudiante' });
     }
 };
+
 
 const getHuella = async (req, res) => {
     try {
@@ -107,7 +113,7 @@ const getHuella = async (req, res) => {
 const postHuella = async (req, res, idEstudiante) => {
     try {
         console.log("Entro mamalon al post huella")
-        finger.enroll({ pageId: idEstudiante, delay: 1000 })
+        finger.enroll({ pageId: idEstudiante })
     } catch (error) {
         console.log(error);
         return res.status(500).json({ message: 'Ocurrió un error al crear el estudiante' });
