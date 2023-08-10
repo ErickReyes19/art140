@@ -38,7 +38,6 @@
                     <div class="modal-body">
                         <!-- Aquí puedes agregar el contenido del modal, por ejemplo, un mensaje o un campo para capturar la huella -->
                         <p>¡Coloque su huella aquí!</p>
-                        <p id="contador">Tiempo restante: 10 segundos</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -47,36 +46,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Agrega esto en tu archivo HTML, preferiblemente al final del body -->
-
-<script>
-    // Función para actualizar el contador en el modal
-    function actualizarContador(segundos) {
-        document.getElementById('contador').innerText = `Tiempo restante: ${segundos} segundos`;
-    }
-
-    // Función para cerrar el modal después de que se agote el tiempo
-    function cerrarModalDespuesDeTiempo(modalId, tiempo) {
-        let segundos = tiempo;
-
-        const intervalo = setInterval(() => {
-            if (segundos <= 0) {
-                clearInterval(intervalo);
-                $('#' + modalId).modal('hide');
-            } else {
-                actualizarContador(segundos);
-                segundos--;
-            }
-        }, 1000);
-    }
-
-    // Llamar a la función para cerrar el modal después de 10 segundos
-    $(document).ready(function() {
-        cerrarModalDespuesDeTiempo('capturarHuellaModal', 10);
-    });
-</script>
-
 
 
 
