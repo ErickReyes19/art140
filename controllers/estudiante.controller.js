@@ -42,11 +42,11 @@ const getEstudiante = async (req = request, res = response) => {
     console.log("Encontró huella")
 
 
-    console.log(idHuella);
+    console.log(idHuella.pageId);
     try {
         const estudiante = await Estudiantes.findOne({
             where: {
-                idEstudiante: idHuella
+                idEstudiante: idHuella.pageId
             }
         });
 
