@@ -1,6 +1,7 @@
 const { request, response } = require('express');
 const db = require('../models/asistencia_art140/index');
 const UsuarioSala = require('../models/usuariosala.model');
+const moment = require('moment');
 
 const Sala = db.sala;
 const Estudiante = db.estudiante;
@@ -16,8 +17,10 @@ const getSalaEstudiante = async (req= request, res= response) => {
                 },
             ],
         });
+        console.log("MAMALOOOOOON----------------")
+        console.log(salas[0].dataValues.estudiantes[0].usuario_sala.createdAt)
 
-        console.log(salas[0].dataValues)
+        const fechaFormateada = moment(fecha).locale('es').format('dddd DD [de] MMMM [del] YYYY h:mm:ss a');
 
         res.render('versalas', { salas });
 
