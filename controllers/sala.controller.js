@@ -17,10 +17,6 @@ const getSalaEstudiante = async (req= request, res= response) => {
                 },
             ],
         });
-        console.log("MAMALOOOOOON----------------")
-        console.log(salas[0].dataValues.estudiantes[0].usuario_sala.createdAt)
-
-        const fechaFormateada = moment(fecha).locale('es').format('dddd DD [de] MMMM [del] YYYY h:mm:ss a');
 
         res.render('versalas', { salas });
 
