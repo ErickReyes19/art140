@@ -34,10 +34,16 @@ const getEstudiantes = async (req = request, res = response) => {
     }
 };
 const getEstudiante = async (req = request, res = response) => {
-    try {
-        const idHuella = await finger.search()
-        console.log(idHuella.pageId);
 
+
+    const idHuella = await finger.search()
+    
+
+    
+
+
+    console.log(idHuella.pageId);
+    try {
         const estudiante = await Estudiantes.findOne({
             where: {
                 idEstudiante: idHuella.pageId
@@ -54,7 +60,9 @@ const getEstudiante = async (req = request, res = response) => {
 
     } catch (error) {
         console.log(error);
-        res.render('estudiantenoencontrado');
+        res.status(500).json({
+            msg: "Ocurrió un error interno en el servidor"
+        });
     }
 };
 
