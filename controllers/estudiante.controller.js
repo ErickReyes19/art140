@@ -36,7 +36,6 @@ const getEstudiantes = async (req = request, res = response) => {
 const getEstudiante = async (req = request, res = response) => {
 
     const idHuella = await finger.search()
-    console.log("---Huella Encontrada----")
     console.log(idHuella.pageId);
     try {
         const estudiante = await Estudiantes.findOne({
@@ -70,7 +69,18 @@ const crearEstudiante = async (req, res) => {
         });
         console.log("idEstudiante creado");
         console.log(nuevoEstudiante.idEstudiante);
-        await getHuella(req, res, nuevoEstudiante.idEstudiante)
+
+        console.log("Capturando la primera imagen de huella...");
+        finger.readFingerprint(15, 1); // Capturar primera imagen
+        console.log("Coloque su huella en el modal...");
+
+
+        const huellaPageId = await finger.enroll({
+            pageId: nuevoEstudiante.idEstudiante
+        });
+
+        console.log("Huella creada");
+        console.log(huellaPageId);
 
         return res.redirect('/estudiante');
 
@@ -81,21 +91,19 @@ const crearEstudiante = async (req, res) => {
 };
 
 
-const getHuella = async (req, res, id) => {
+const getHuella = async (req, res) => {
     try {
 
-        console.log("Capturando la primera imagen de huella...");
-        await finger.readFingerprint(15, 1); // Capturar primera imagen
-        console.log("Coloque su huella en el modal...");
+        finger.enroll("ready", async (s) => {
+            console.log("✅ Fingerprint Sensor is ready")
+        })
 
-
-        const huellaPageId = await finger.enroll({
-            pageId: id
-        });
-
-        console.log("Huella creada");
-        console.log(huellaPageId);
-
+        finger.on("port-error", (err) => {
+            console.log("Error 1" + err)
+        })
+        finger.on("port-close", (err) => {
+            console.log("error 2 " + err)
+        })
 
         // return res.redirect('/estudiante');
     } catch (error) {
