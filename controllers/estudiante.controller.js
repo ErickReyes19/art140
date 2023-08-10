@@ -34,12 +34,15 @@ const getEstudiantes = async (req = request, res = response) => {
     }
 };
 const getEstudiante = async (req = request, res = response) => {
-    const { huella } = req.query;
-    console.log(huella);
+
+    const idHuella = await finger.search()
+
+
+    console.log(idHuella);
     try {
         const estudiante = await Estudiantes.findOne({
             where: {
-                huella: huella
+                idEstudiante: idHuella
             }
         });
         if (estudiante) {
@@ -73,11 +76,6 @@ const crearEstudiante = async (req, res) => {
         await finger.readFingerprint(15, 1); // Capturar primera imagen
         console.log("Coloque su huella en el modal...");
 
-        // Agregar un retraso de 10 segundos para que el usuario coloque la huella
-        await new Promise(resolve => setTimeout(resolve, 5));
-
-        console.log("Capturando la segunda imagen de huella...");
-        await finger.readFingerprint(15, 2); // Capturar segunda imagen
 
         const huellaPageId = await finger.enroll({
             pageId: nuevoEstudiante.idEstudiante
