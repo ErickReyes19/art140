@@ -35,7 +35,11 @@ const getEstudiantes = async (req = request, res = response) => {
 };
 const getEstudiante = async (req = request, res = response) => {
 
+    console.log("ENtro al busca estudiaten con huella")
+
     const idHuella = await finger.search()
+
+    console.log("Encontró huella")
 
 
     console.log(idHuella);
@@ -45,6 +49,8 @@ const getEstudiante = async (req = request, res = response) => {
                 idEstudiante: idHuella
             }
         });
+
+        console.log("Encontró estudiante")
         if (estudiante) {
             res.render('estudientaencontrado', { estudiante });
         } else {

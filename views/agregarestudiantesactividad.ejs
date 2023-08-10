@@ -11,27 +11,19 @@
             min-height: 400px;
             border-radius: 5px;
             margin-top: 0;">
-                <div class="container mt-10">
+                <div class="container">
 
                     <div class="mb-3">
                         <h1 style="text-align: center; font-family: 'Poppins', sans-serif;">Buscar Usuario</h1>
                     </div>
                     <form action="/estudiante/buscar" method="GET">
-                        <div class="form-group">
-                            <div class="mb-3">
-                                <label for="numeroCuenta">Número de Cuenta:</label>
-                            </div>
-                            <div class="mb-3">
-                                <input type="text" class="form-control" id="huella" name="huella" required
-                                    placeholder="Huella dactilar">
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-secondary mr-2"  data-toggle="modal"
-                            data-target="#capturarHuellaModal">Buscar Estudiante</button>
-                        </div>
-                    </form>
                 </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-secondary mr-2" data-toggle="modal"
+                        data-target="#capturarHuellaModal">Buscar Estudiante</button>
+                </div>
+                </form>
+            </div>
             </div>
 
             <!-- Modal para capturar huella -->
