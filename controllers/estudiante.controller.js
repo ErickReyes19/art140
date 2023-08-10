@@ -35,13 +35,7 @@ const getEstudiantes = async (req = request, res = response) => {
 };
 const getEstudiante = async (req = request, res = response) => {
 
-
     const idHuella = await finger.search()
-
-
-
-
-
     console.log(idHuella.pageId);
     try {
         const estudiante = await Estudiantes.findOne({
@@ -60,9 +54,7 @@ const getEstudiante = async (req = request, res = response) => {
 
     } catch (error) {
         console.log(error);
-        res.status(500).json({
-            msg: "Ocurrió un error interno en el servidor"
-        });
+        return res.status(500).json({ message: 'Ocurrió un error al crear el estudiante :(' });
     }
 };
 
