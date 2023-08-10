@@ -35,11 +35,12 @@ const getEstudiantes = async (req = request, res = response) => {
 };
 const getEstudiante = async (req = request, res = response) => {
 
-    console.log("ENtro al busca estudiaten con huella")
 
     const idHuella = await finger.search()
-
-    console.log("Encontró huella")
+    
+    if (idHuella.code == 2){
+        return res.render('estudiantenoencontrado');
+    }
 
 
     console.log(idHuella.pageId);
@@ -50,7 +51,7 @@ const getEstudiante = async (req = request, res = response) => {
             }
         });
 
-        console.log("Encontró estudiante")
+
         if (estudiante) {
             res.render('estudientaencontrado', { estudiante });
         } else {
@@ -114,16 +115,6 @@ const getHuella = async (req, res) => {
         })
 
         // return res.redirect('/estudiante');
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({ message: 'Ocurrió un error al crear el estudiante' });
-    }
-};
-
-const postHuella = async (req, res, idEstudiante) => {
-    try {
-        console.log("Entro mamalon al post huella")
-        finger.enroll({ pageId: idEstudiante, delay: 1000 })
     } catch (error) {
         console.log(error);
         return res.status(500).json({ message: 'Ocurrió un error al crear el estudiante' });
