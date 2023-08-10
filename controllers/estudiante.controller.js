@@ -58,6 +58,7 @@ const getEstudiante = async (req = request, res = response) => {
 };
 
 const crearEstudiante = async (req, res) => {
+    console.log("Entro al crear estudiante")
     try {
         const { numeroCuenta, nombre } = req.body;
 
@@ -65,8 +66,12 @@ const crearEstudiante = async (req, res) => {
             numeroCuenta: numeroCuenta,
             nombre: nombre,
         });
+        console.log("idEstudiante creado")
+        console.log(nuevoEstudiante.idEstudiante)
 
         const huella = await postHuella(req, res, nuevoEstudiante.idEstudiante);
+        console.log("huella creada")
+        console.log(huella)
 
         return res.redirect('/estudiante');
 
@@ -100,7 +105,9 @@ const getHuella = async (req, res) => {
 };
 
 const postHuella = async (req, res, idEstudiante) => {
+
     try {
+        console.log("Entro mamalon al post huella")
         finger.enroll({ pageId: idEstudiante })
     } catch (error) {
         console.log(error);
