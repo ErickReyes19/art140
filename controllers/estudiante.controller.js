@@ -34,38 +34,27 @@ const getEstudiantes = async (req = request, res = response) => {
     }
 };
 const getEstudiante = async (req = request, res = response) => {
-
-
-    const idHuella = await finger.search()
-
-    if (idHuella.code == 2) {
-        return res.render('estudiantenoencontrado');
-    }
-    else {
-
-
+    try {
+        const idHuella = await finger.search()
         console.log(idHuella.pageId);
-        try {
-            const estudiante = await Estudiantes.findOne({
-                where: {
-                    idEstudiante: idHuella.pageId
-                }
-            });
 
-
-            if (estudiante) {
-                res.render('estudientaencontrado', { estudiante });
-            } else {
-                res.render('estudiantenoencontrado');
+        const estudiante = await Estudiantes.findOne({
+            where: {
+                idEstudiante: idHuella.pageId
             }
+        });
 
 
-        } catch (error) {
-            console.log(error);
-            res.status(500).json({
-                msg: "Ocurrió un error interno en el servidor"
-            });
+        if (estudiante) {
+            res.render('estudientaencontrado', { estudiante });
+        } else {
+            res.render('estudiantenoencontrado');
         }
+
+
+    } catch (error) {
+        console.log(error);
+        res.render('estudiantenoencontrado');
     }
 };
 
