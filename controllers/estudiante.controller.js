@@ -108,7 +108,7 @@ const postHuella = async (req, res, idEstudiante) => {
 
     try {
         console.log("Entro mamalon al post huella")
-        finger.enroll({ pageId: idEstudiante })
+        finger.enroll({ pageId: idEstudiante, delay: 10000 })
     } catch (error) {
         console.log(error);
         return res.status(500).json({ message: 'Ocurrió un error al crear el estudiante' });
