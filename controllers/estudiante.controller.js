@@ -85,7 +85,7 @@ const getHuella = async (req, res, id) => {
     try {
 
         console.log("Capturando la primera imagen de huella...");
-        awaifinger.readFingerprint(15, 1); // Capturar primera imagen
+        await finger.readFingerprint(15, 1); // Capturar primera imagen
         console.log("Coloque su huella en el modal...");
 
 
