@@ -37,33 +37,35 @@ const getEstudiante = async (req = request, res = response) => {
 
 
     const idHuella = await finger.search()
-    
-    if (idHuella.code == 2){
+
+    if (idHuella.code == 2) {
         return res.render('estudiantenoencontrado');
     }
+    else {
 
 
-    console.log(idHuella.pageId);
-    try {
-        const estudiante = await Estudiantes.findOne({
-            where: {
-                idEstudiante: idHuella.pageId
+        console.log(idHuella.pageId);
+        try {
+            const estudiante = await Estudiantes.findOne({
+                where: {
+                    idEstudiante: idHuella.pageId
+                }
+            });
+
+
+            if (estudiante) {
+                res.render('estudientaencontrado', { estudiante });
+            } else {
+                res.render('estudiantenoencontrado');
             }
-        });
 
 
-        if (estudiante) {
-            res.render('estudientaencontrado', { estudiante });
-        } else {
-            res.render('estudiantenoencontrado');
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({
+                msg: "Ocurrió un error interno en el servidor"
+            });
         }
-
-
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            msg: "Ocurrió un error interno en el servidor"
-        });
     }
 };
 
