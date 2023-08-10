@@ -6,6 +6,18 @@ const Estudiantes = db.estudiante;
 
 const Fingerprint = require("adafruit-fingerprint").Fingerprint
 
+const devicePath = "COM23" // or something like "COM3" on Windows
+
+const sensorOptions = {
+    // init with sensor serial port path
+    serialPort: devicePath,
+    // serialNumber: "xxxxxx",
+    baudRate: 57600,
+    // ...
+}
+
+const finger = new Fingerprint(sensorOptions)
+
 
 
 
@@ -47,14 +59,19 @@ const getEstudiante = async (req = request, res = response) => {
 
 const crearEstudiante = async (req, res) => {
     try {
-        const { numeroCuenta, nombre, huella } = req.body;
+        const { numeroCuenta, nombre } = req.body;
 
         const nuevoEstudiante = await Estudiantes.create({
             numeroCuenta: numeroCuenta,
             nombre: nombre,
-            huella: huella,
         });
+
+        const huella = await postHuella(req, res, nuevoEstudiante.idEstudiante);
+
         return res.redirect('/estudiante');
+
+
+
     } catch (error) {
         console.log(error);
         return res.status(500).json({ message: 'Ocurrió un error al crear el estudiante' });
@@ -63,24 +80,9 @@ const crearEstudiante = async (req, res) => {
 
 const getHuella = async (req, res) => {
     try {
-        // change devicePath with a real device path or use serialNumber option
-        const devicePath = "COM23" // or something like "COM3" on Windows
 
-        const sensorOptions = {
-            // init with sensor serial port path
-            serialPort: devicePath,
-            // serialNumber: "xxxxxx",
-            baudRate: 57600,
-            // ...
-        }
-
-        const finger = new Fingerprint(sensorOptions)
-
-
-        finger.on("ready", async (s) => {
+        finger.enroll("ready", async (s) => {
             console.log("✅ Fingerprint Sensor is ready")
-
-
         })
 
         finger.on("port-error", (err) => {
@@ -91,6 +93,15 @@ const getHuella = async (req, res) => {
         })
 
         // return res.redirect('/estudiante');
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: 'Ocurrió un error al crear el estudiante' });
+    }
+};
+
+const postHuella = async (req, res, idEstudiante) => {
+    try {
+        finger.enroll({ pageId: idEstudiante })
     } catch (error) {
         console.log(error);
         return res.status(500).json({ message: 'Ocurrió un error al crear el estudiante' });

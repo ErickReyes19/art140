@@ -14,10 +14,6 @@ const Estudiante = dbConnection.define('estudiante', {
   nombre: {
     type: DataTypes.STRING,
     allowNull: false
-  },
-  huella: {
-    type: DataTypes.STRING,
-    allowNull: true
   }
 
 }, {

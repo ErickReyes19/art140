@@ -13,45 +13,33 @@ exports.initial = async () => {
         })
         await Estudiante.create({
             numeroCuenta: 20182300096,
-            nombre: "Erick Jose Reyes Pineda",
-            huella: "J8K8JHH6H$K8JHG9K8JHCF5K8JH",
-            idUsuario: 1
+            nombre: "Erick Jose Reyes Pineda"
         });
         await Estudiante.create({
             numeroCuenta: 20182300097,
             nombre: "Brayan Alexis Muñoz",
-            huella: "J8K8JHH6H$K8JHG9K8JHCF5K8JH",
-            idUsuario: 1
+
         });
         await Estudiante.create({
             numeroCuenta: 20182300096,
-            nombre: "Erick Jose Reyes Pineda",
-            huella: "J8K8JHH6H$K8JHG9K8JHCF5K8JH",
-            idUsuario: 1
+            nombre: "Erick Jose Reyes Pineda"
         });
         await Estudiante.create({
             numeroCuenta: 20182300097,
             nombre: "Brayan Alexis Muñoz",
-            huella: "J8K8JHH6H$K8JHG9K8JHCF5K8JH",
-            idUsuario: 1
+
         });
         await Estudiante.create({
             numeroCuenta: 20182300096,
-            nombre: "Erick Jose Reyes Pineda",
-            huella: "J8K8JHH6H$K8JHG9K8JHCF5K8JH",
-            idUsuario: 1
+            nombre: "Erick Jose Reyes Pineda"
         });
         await Estudiante.create({
             numeroCuenta: 20182300097,
-            nombre: "Brayan Alexis Muñoz",
-            huella: "J8K8JHH6H$K8JHG9K8JHCF5K8JH",
-            idUsuario: 1
+            nombre: "Brayan Alexis Muñoz"
         });
         await Estudiante.create({
             numeroCuenta: 11111,
-            nombre: "Brayan Alexis Muñoz",
-            huella: "AAA",
-            idUsuario: 1
+            nombre: "Brayan Alexis Muñoz"
         });
     } catch (error) {
         console.log(error);
