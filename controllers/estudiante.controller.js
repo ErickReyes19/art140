@@ -37,9 +37,9 @@ const getEstudiante = async (req = request, res = response) => {
 
 
     const idHuella = await finger.search()
-    
 
-    
+
+
 
 
     console.log(idHuella.pageId);
